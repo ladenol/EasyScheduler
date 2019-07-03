@@ -114,7 +114,7 @@
         {{$t('Recipient')}}
       </div>
       <div class="cont" style="width: 680px;">
-        <m-email v-model="receivers" :repeat-data="receiversCc"></m-email>
+        <m-email v-model="receivers" :repeat-data="receivers"></m-email>
       </div>
     </div>
     <div class="clearfix list">
@@ -122,7 +122,7 @@
         {{$t('Cc')}}
       </div>
       <div class="cont" style="width: 680px;">
-        <m-email v-model="receiversCc" :repeat-data="receivers"></m-email>
+        <m-email v-model="receiversCc" :repeat-data="receiversCc"></m-email>
       </div>
     </div>
     <div class="submit">

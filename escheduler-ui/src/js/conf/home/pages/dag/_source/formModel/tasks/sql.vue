@@ -42,13 +42,13 @@
       <m-list-box>
         <div slot="text">{{$t('Recipient')}}</div>
         <div slot="content">
-          <m-email v-model="receivers" :disabled="isDetails" :repeat-data="receiversCc"></m-email>
+          <m-email v-model="receivers" :disabled="isDetails" :repeat-data="receivers"></m-email>
         </div>
       </m-list-box>
       <m-list-box>
         <div slot="text">{{$t('Cc')}}</div>
         <div slot="content">
-          <m-email v-model="receiversCc" :disabled="isDetails" :repeat-data="receivers"></m-email>
+          <m-email v-model="receiversCc" :disabled="isDetails" :repeat-data="receiversCc"></m-email>
         </div>
       </m-list-box>
     </template>
