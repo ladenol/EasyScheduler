@@ -211,6 +211,7 @@ public class DataSourceService extends BaseService{
         switch (dataSource.getType()) {
             case HIVE:
             case SQLSERVER:
+            case IMPALA:
                 separator = ";";
                 break;
             case MYSQL:
@@ -381,6 +382,10 @@ public class DataSourceService extends BaseService{
                     datasource = JSONObject.parseObject(parameter, SQLServerDataSource.class);
                     Class.forName(Constants.COM_SQLSERVER_JDBC_DRIVER);
                     break;
+                case IMPALA:
+                    datasource = JSONObject.parseObject(parameter, ImpalaDataSource.class);
+                    Class.forName(Constants.COM_CLOUDERA_IMPALA_JDBC41_DRIVER);
+                    break;
                 default:
                     break;
             }
@@ -454,6 +459,7 @@ public class DataSourceService extends BaseService{
             separator = "&";
         } else if (Constants.HIVE.equals(type.name())
                 || Constants.SPARK.equals(type.name())
+                || Constants.IMPALA.equals(type.name())
                 || Constants.SQLSERVER.equals(type.name())) {
             separator = ";";
         }
@@ -505,6 +511,9 @@ public class DataSourceService extends BaseService{
                 }
                 sb.deleteCharAt(sb.length() - 1);
             }
+        } else if (Constants.IMPALA.equals(type.name())) {
+            sb.append(Constants.JDBC_IMPALA);
+            sb.append(host).append(":").append(port);
         } else if (Constants.CLICKHOUSE.equals(type.name())) {
             sb.append(Constants.JDBC_CLICKHOUSE);
             sb.append(host).append(":").append(port);

@@ -28,6 +28,7 @@ public enum DbType {
    * 4 clickhouse
    * 5 oracle
    * 6 sqlserver
+   * 6 impala
    */
-  MYSQL, POSTGRESQL, HIVE, SPARK, CLICKHOUSE, ORACLE, SQLSERVER
+  MYSQL, POSTGRESQL, HIVE, SPARK, CLICKHOUSE, ORACLE, SQLSERVER, IMPALA
 }

@@ -10,12 +10,8 @@
           <template slot="content">
             <x-radio-group v-model="type" size="small">
               <x-radio :label="'MYSQL'">MYSQL</x-radio>
-              <x-radio :label="'POSTGRESQL'">POSTGRESQL</x-radio>
-              <x-radio :label="'HIVE'">HIVE/IMPALA</x-radio>
               <x-radio :label="'SPARK'">SPARK</x-radio>
-              <x-radio :label="'CLICKHOUSE'">CLICKHOUSE</x-radio>
-              <x-radio :label="'ORACLE'">ORACLE</x-radio>
-              <x-radio :label="'SQLSERVER'">SQLSERVER</x-radio>
+              <x-radio :label="'IMPALA'">IMPALA</x-radio>
             </x-radio-group>
           </template>
         </m-list-box-f>
@@ -64,7 +60,7 @@
           </template>
         </m-list-box-f>
         <m-list-box-f>
-          <template slot="name"><b>*</b>{{$t('User Name')}}</template>
+          <template slot="name">{{$t('User Name')}}</template>
           <template slot="content">
             <x-input
                     type="input"
@@ -242,10 +238,13 @@
           this.$message.warning(`${i18n.$t('Please enter port')}`)
           return false
         }
+
+	/*
         if (!this.userName) {
           this.$message.warning(`${i18n.$t('Please enter user name')}`)
           return false
         }
+	*/
 
         if (!this.database) {
           this.$message.warning(`${i18n.$t('Please enter database name')}`)

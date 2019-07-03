@@ -85,6 +85,7 @@ public class Constants {
     public static final String COM_CLICKHOUSE_JDBC_DRIVER = "ru.yandex.clickhouse.ClickHouseDriver";
     public static final String COM_ORACLE_JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
     public static final String COM_SQLSERVER_JDBC_DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    public static final String COM_CLOUDERA_IMPALA_JDBC41_DRIVER = "com.cloudera.impala.jdbc41.Driver";
 
     /**
      * database type
@@ -96,6 +97,7 @@ public class Constants {
     public static final String CLICKHOUSE = "CLICKHOUSE";
     public static final String ORACLE = "ORACLE";
     public static final String SQLSERVER = "SQLSERVER";
+    public static final String IMPALA = "IMPALA";
 
     /**
      * jdbc url
@@ -106,6 +108,7 @@ public class Constants {
     public static final String JDBC_CLICKHOUSE = "jdbc:clickhouse://";
     public static final String JDBC_ORACLE = "jdbc:oracle:thin:@//";
     public static final String JDBC_SQLSERVER = "jdbc:sqlserver://";
+    public static final String JDBC_IMPALA = "jdbc:impala://";
 
 
     public static final String ADDRESS = "address";

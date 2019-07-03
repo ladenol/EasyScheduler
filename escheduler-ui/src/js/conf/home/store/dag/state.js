@@ -54,34 +54,39 @@ export default {
       code: 'MYSQL',
       disabled: false
     },
-    {
-      id: 1,
-      code: 'POSTGRESQL',
-      disabled: false
-    },
-    {
-      id: 2,
-      code: 'HIVE',
-      disabled: false
-    },
+    //{
+    //  id: 1,
+    //  code: 'POSTGRESQL',
+    //  disabled: true
+    //},
+    //{
+    //  id: 2,
+    //  code: 'HIVE',
+    //  disabled: true
+    //},
     {
       id: 3,
       code: 'SPARK',
       disabled: false
     },
+    //{
+    //  id: 4,
+    //  code: 'CLICKHOUSE',
+    //  disabled: true
+    //},
+    //{
+    //  id: 5,
+    //  code: 'ORACLE',
+    //  disabled: true
+    //},
+    //{
+    //  id: 6,
+    //  code: 'SQLSERVER',
+    //  disabled: true
+    //},
     {
-      id: 4,
-      code: 'CLICKHOUSE',
-      disabled: false
-    },
-    {
-      id: 5,
-      code: 'ORACLE',
-      disabled: false
-    },
-    {
-      id: 6,
-      code: 'SQLSERVER',
+      id: 7,
+      code: 'IMPALA',
       disabled: false
     }
   ],

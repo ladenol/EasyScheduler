@@ -615,6 +615,11 @@ public final class Constants {
     public static final String JDBC_SPARK_CLASS_NAME = "org.apache.hive.jdbc.HiveDriver";
 
     /**
+     * impala
+     */
+    public static final String JDBC_IMPALA_CLASS_NAME = "com.cloudera.impala.jdbc41.Driver";
+
+    /**
      * ClickHouse
      */
     public static final String JDBC_CLICKHOUSE_CLASS_NAME = "ru.yandex.clickhouse.ClickHouseDriver";
