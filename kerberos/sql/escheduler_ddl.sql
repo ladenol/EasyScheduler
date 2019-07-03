@@ -19,6 +19,10 @@
 -- Table structure for table `qrtz_blob_triggers`
 --
 
+CREATE DATABASE IF NOT EXISTS `escheduler`;
+
+USE `escheduler`;
+
 DROP TABLE IF EXISTS `qrtz_blob_triggers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
