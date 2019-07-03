@@ -79,7 +79,7 @@ CREATE TABLE `t_escheduler_datasource` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` varchar(64) NOT NULL COMMENT '数据源名称',
   `note` varchar(256) DEFAULT NULL COMMENT '描述',
-  `type` tinyint(4) NOT NULL COMMENT '数据源类型：0 mysql,1 postgresql,2 hive,3 spark',
+  `type` tinyint(4) NOT NULL COMMENT '数据源类型：0 mysql,1 postgresql,2 hive,3 spark,4 clickhouse,5 oracle,6 sqlserver,7 impala',
   `user_id` int(11) NOT NULL COMMENT '创建用户id',
   `connection_params` text NOT NULL COMMENT '连接参数(json格式)',
   `create_time` datetime NOT NULL COMMENT '创建时间',
