@@ -35,22 +35,6 @@
 		</fileSet>
 
 		<fileSet>
-			<directory>sql</directory>
-			<includes>
-				<include>**/*</include>
-			</includes>
-			<outputDirectory>./sql</outputDirectory>
-		</fileSet>
-
-		<fileSet>
-			<directory>script</directory>
-			<includes>
-				<include>*.*</include>
-			</includes>
-			<outputDirectory>./script</outputDirectory>
-		</fileSet>
-
-		<fileSet>
 			<directory>script</directory>
 			<includes>
 				<include>config/*.*</include>
@@ -61,22 +45,10 @@
 
 		<fileSet>
 			<directory>script</directory>
-			<includes>
-				<include>start_all.sh</include>
-				<include>stop_all.sh</include>
+            <includes>
 				<include>escheduler-daemon.sh</include>
 			</includes>
 			<outputDirectory>./bin</outputDirectory>
 		</fileSet>
-
-		<fileSet>
-			<directory>./</directory>
-			<includes>
-				<include>*.sh</include>
-				<include>*.py</include>
-			</includes>
-			<outputDirectory>.</outputDirectory>
-		</fileSet>
-
 	</fileSets>
 </assembly>

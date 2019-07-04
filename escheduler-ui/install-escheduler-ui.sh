@@ -53,26 +53,26 @@ eschedulerConf(){
             root   /usr/share/nginx/html;
             }
         }
-    " >> /etc/nginx/conf.d/escheduler.conf
+    " > /etc/nginx/conf.d/escheduler.conf
 
 }
 
 ubuntu(){
     #更新源
-    apt-get update
+    #apt-get update
 
     #安装nginx
-    apt-get install -y nginx
+    #apt-get install -y nginx
 
     # 配置nginx
     eschedulerConf $1 $2
 
     # 启动nginx
-    /etc/init.d/nginx start
-    sleep 1
-    if [ $? -ne 0 ];then
-        /etc/init.d/nginx start
-    fi
+    #/etc/init.d/nginx start
+    #sleep 1
+    #if [ $? -ne 0 ];then
+    #    /etc/init.d/nginx start
+    #fi
     nginx -s reload
 }
 
