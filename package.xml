@@ -14,7 +14,10 @@
 			<directory>escheduler-server/target/escheduler-server-${project.version}</directory>
 			<includes>
 				<include>**/*.*</include>
-			</includes>
+            </includes>
+            <excludes>
+                <exclude>conf/common/hadoop/*-site.xml</exclude>
+            </excludes>
 			<outputDirectory>.</outputDirectory>
 		</fileSet>
 		
@@ -49,6 +52,14 @@
 				<include>escheduler-daemon.sh</include>
 			</includes>
 			<outputDirectory>./bin</outputDirectory>
+        </fileSet>
+
+		<fileSet>
+            <directory>escheduler-server/target/escheduler-server-${project.version}/conf/common/hadoop</directory>
+			<includes>
+                <include>*-site.xml</include>
+			</includes>
+            <outputDirectory>./conf</outputDirectory>
 		</fileSet>
 	</fileSets>
 </assembly>
