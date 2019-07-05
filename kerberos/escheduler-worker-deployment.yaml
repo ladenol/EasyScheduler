@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pre1-escheduler-worker
+  namespace: shentan-bigdata 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: pod-escheduler-worker
+        app: escheduler-worker
+    spec:
+      terminationGracePeriodSeconds: 60
+      hostname: pre1-escheduler-api
+      containers:
+        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.3-ping
+          name: escheduler-worker
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 4
+              memory: 8Gi
+            requests:
+              cpu: 1
+              memory: 1Gi
+          command:
+            - /opt/entrypoint.sh
+            - /opt/mntcephutils/entry/entrypoint.sh
+          env:
+            - name: BD_ESCHEDULER_ROLE
+              value: worker-server
+            - name: BD_MYSQL_SERVER
+              value: pre1-mysql1
+            - name: BD_MYSQL_USERNAME
+              value: root
+            - name: BD_MYSQL_PASSWD
+              value: "123456"
+            - name: BD_SUITE_PREFIX
+              value: pre1
+            - name: BD_ZOOKEEPER_SERVERS
+              value: pre1-zookeeper1:2181,pre1-zookeeper2:2181,pre1-zookeeper3:2181
+          volumeMounts:
+            - mountPath: /opt/mntcephutils
+              name: pre1-escheduler-backend-util 
+            - mountPath: /opt/escheduler/data
+              name: pre1-escheduler-backend-data
+      storage:
+        - name: pre1-escheduler-backend-util 
+        - name: pre1-escheduler-backend-data

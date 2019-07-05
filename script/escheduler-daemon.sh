@@ -100,6 +100,25 @@ case $startStop in
       fi
       ;;
 
+  (front)
+
+    [ -w "$ESCHEDULER_PID_DIR" ] ||  mkdir -p "$ESCHEDULER_PID_DIR"
+
+    if [ -f $pid ]; then
+      if kill -0 `cat $pid` > /dev/null 2>&1; then
+        echo $command running as process `cat $pid`.  Stop it first.
+        exit 1
+      fi
+    fi
+
+    echo starting $command
+
+    exec_command="$LOG_FILE $ESCHEDULER_OPTS -classpath $ESCHEDULER_CONF_DIR:$ESCHEDULER_LIB_JARS $CLASS"
+
+    echo "$JAVA_HOME/bin/java $exec_command"
+    $JAVA_HOME/bin/java $exec_command
+    ;;
+
   (*)
     echo $usage
     exit 1
