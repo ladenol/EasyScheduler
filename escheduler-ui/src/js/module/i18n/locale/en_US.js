@@ -95,7 +95,7 @@ export default {
   'Please enter method(optional)': 'Please enter method(optional)',
   'Script': 'Script',
   'Please enter script(required)': 'Please enter script(required)',
-  'Deploy Mode': 'Deploy Mode',
+  'Master': 'Master address',
   'Driver core number': 'Driver core number',
   'Please enter driver core number': 'Please enter driver core number',
   'Driver memory use': 'Driver memory use',
@@ -458,5 +458,6 @@ export default {
   'Post Statement': 'Post Statement',
   'Statement cannot be empty': 'Statement cannot be empty',
   'Process Define Count': 'Process Define Count',
-  'Process Instance Running Count': 'Process Instance Running Count'
+  'Process Instance Running Count': 'Process Instance Running Count',
+  'Please enter master address':'Please enter master address. e.g, master1:7077,master2:7077'
 }

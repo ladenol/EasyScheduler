@@ -95,7 +95,7 @@ export default {
   'Please enter method(optional)': '请输入方法(选填)',
   'Script': '脚本',
   'Please enter script(required)': '请输入脚本(必填)',
-  'Deploy Mode': '部署方式',
+  'Master': 'Master地址',
   'Driver core number': 'Driver内核数',
   'Please enter driver core number': '请输入Driver内核数',
   'Driver memory use': 'Driver内存数',
@@ -460,4 +460,5 @@ export default {
   'Process Define Count': '流程定义个数',
   'Process Instance Running Count': '运行流程实例个数',
   'Please select a queue': '请选择队列',
+  'Please enter master address':'请输入master地址。例如， master1:7077,master2:7077',
 }

@@ -47,13 +47,15 @@
       </div>
     </m-list-box>
     <m-list-box>
-      <div slot="text">{{$t('Deploy Mode')}}</div>
+      <div slot="text">{{$t('Master')}}</div>
       <div slot="content">
-        <x-radio-group v-model="deployMode">
-          <x-radio :label="'cluster'" :disabled="isDetails"></x-radio>
-          <x-radio :label="'client'" :disabled="isDetails"></x-radio>
-          <x-radio :label="'local'" :disabled="isDetails"></x-radio>
-        </x-radio-group>
+        <x-input
+                :disabled="isDetails"
+                type="input"
+                v-model="master"
+                :placeholder="$t('Please enter master address')"
+                autocomplete="off">
+        </x-input>
       </div>
     </m-list-box>
     <div class="list-box-4p">
@@ -186,7 +188,7 @@
         // Master jar package(List)
         mainJarList: [],
         // Deployment method
-        deployMode: 'cluster',
+        master: '',
         // Resource(list)
         resourceList: [],
         // Custom function
@@ -292,7 +294,7 @@
           mainJar: {
             res: this.mainJar
           },
-          deployMode: this.deployMode,
+          master: this.master,
           resourceList: this.resourceList,
           localParams: this.localParams,
           driverCores: this.driverCores,
@@ -341,7 +343,7 @@
         if (!_.isEmpty(o)) {
           this.mainClass = o.params.mainClass || ''
           this.mainJar = o.params.mainJar.res || ''
-          this.deployMode = o.params.deployMode || ''
+          this.master = o.params.master || ''
           this.driverCores = o.params.driverCores || 1
           this.driverMemory = o.params.driverMemory || '512M'
           this.numExecutors = o.params.numExecutors || 2
