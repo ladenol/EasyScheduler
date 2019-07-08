@@ -12,7 +12,7 @@ spec:
         app: escheduler-alert
     spec:
       terminationGracePeriodSeconds: 60
-      hostname: pre1-escheduler-api
+      hostname: pre1-escheduler-alert
       containers:
         - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.3-ping
           name: escheduler-alert

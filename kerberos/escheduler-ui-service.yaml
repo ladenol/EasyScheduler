@@ -1,0 +1,18 @@
+uiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: pre1-escheduler-ui
+    app: escheduler-ui
+  name: pre1-escheduler-ui
+  namespace: shentan-bigdata
+spec:
+  type: NodePort
+  ports:
+    - name: escheduler-ui
+      port: 8888
+      targetPort: 8888
+      protocol: TCP
+  selector:
+    name: pod-escheduler-ui
+    app: escheduler-ui

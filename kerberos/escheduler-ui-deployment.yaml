@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pre1-escheduler-ui
+  namespace: shentan-bigdata 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: pod-escheduler-ui
+        app: escheduler-ui
+    spec:
+      terminationGracePeriodSeconds: 60
+      hostname: pre1-escheduler-ui
+      containers:
+        - image: 10.19.248.12:30100/tools/dep-centos7-eschedulerui-1.0.4:0.3-ping
+          name: escheduler-ui
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 4
+              memory: 8Gi
+            requests:
+              cpu: 1
+              memory: 1Gi
+          command:
+            - bash
+            - -c
+            - 'sed -i "s/%BD_SUITE_PREFIX%/${BD_SUITE_PREFIX}/g" /etc/nginx/conf.d/escheduler.conf && nginx -g "daemon off;"'
+          env:
+            - name: BD_ESCHEDULER_ROLE
+              value: ui-server
+            - name: BD_SUITE_PREFIX
+              value: pre1
