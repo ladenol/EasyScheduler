@@ -4,5 +4,9 @@ ARG ARG_VERSION=1.0.4-SNAPSHOT
 
 ADD escheduler-${ARG_VERSION}.tar.gz /opt/escheduler-${ARG_VERSION}
 
+RUN yum install -y sudo && \
+        yum clean all && \
+        rm -rf /var/cache/yum/*
+
 RUN cd /opt && \
         ln -s escheduler-${ARG_VERSION} escheduler

@@ -14,7 +14,7 @@ spec:
       terminationGracePeriodSeconds: 60
       hostname: pre1-escheduler-master
       containers:
-        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.3-ping
+        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.4-ping
           name: escheduler-master
           imagePullPolicy: IfNotPresent
           resources:
