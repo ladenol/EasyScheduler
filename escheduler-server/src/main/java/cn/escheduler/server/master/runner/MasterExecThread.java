@@ -302,6 +302,7 @@ public class MasterExecThread implements Runnable {
 
     /**
      * process post handle
+     * TODO: bug fix: deleteDirectory should be called on Worker
      */
     private void postHandle() {
         logger.info("develop mode is: {}", CommonUtils.isDevelopMode());
