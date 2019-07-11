@@ -37,20 +37,12 @@ public class SparkArgsUtils {
      * @return
      */
     public static List<String> buildArgs(SparkParameters param) {
+
+        System.out.println(param);
         List<String> args = new ArrayList<>();
-        String deployMode = "cluster";
 
         args.add(Constants.MASTER);
-        if(StringUtils.isNotEmpty(param.getDeployMode())){
-            deployMode = param.getDeployMode();
-
-        }
-        if(!"local".equals(deployMode)){
-            args.add("yarn");
-            args.add(Constants.DEPLOY_MODE);
-        }
-
-        args.add(param.getDeployMode());
+        args.add("spark://" + param.getMaster());
 
         if(param.getProgramType() !=null ){
             if(param.getProgramType()!=ProgramType.PYTHON){

@@ -44,6 +44,11 @@ public class SparkParameters extends AbstractParameters {
   private String deployMode;
 
   /**
+   * master
+   */
+  private String master;
+
+  /**
    * arguments
    */
   private String mainArgs;
@@ -117,6 +122,14 @@ public class SparkParameters extends AbstractParameters {
 
   public void setDeployMode(String deployMode) {
     this.deployMode = deployMode;
+  }
+
+  public String getMaster() {
+    return master;
+  }
+
+  public void setMaster(String master) {
+    this.master = master;
   }
 
   public String getMainArgs() {
