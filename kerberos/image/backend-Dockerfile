@@ -10,3 +10,5 @@ RUN yum install -y sudo && \
 
 RUN cd /opt && \
         ln -s escheduler-${ARG_VERSION} escheduler
+
+WORKDIR /opt/escheduler
