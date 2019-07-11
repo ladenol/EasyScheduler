@@ -159,6 +159,13 @@
                 ref="DEPENDENT"
                 :backfill-item="backfillItem">
         </m-dependent>
+        <!-- java node -->
+        <m-java
+                v-if="taskType === 'JAVA'"
+                @on-params="_onParams"
+                ref="JAVA"
+                :backfill-item="backfillItem">
+        </m-java>
 
       </div>
     </div>
@@ -179,6 +186,7 @@
   import mShell from './tasks/shell'
   import mSpark from './tasks/spark'
   import mPython from './tasks/python'
+  import mJava from './tasks/java'
   import JSP from './../plugIn/jsPlumbHandle'
   import mProcedure from './tasks/procedure'
   import mDependent from './tasks/dependent'
@@ -457,6 +465,7 @@
       mSpark,
       mPython,
       mDependent,
+      mJava,
       mSelectInput,
       mTimeoutAlarm,
       mPriority,

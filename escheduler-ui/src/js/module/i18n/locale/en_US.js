@@ -459,5 +459,7 @@ export default {
   'Statement cannot be empty': 'Statement cannot be empty',
   'Process Define Count': 'Process Define Count',
   'Process Instance Running Count': 'Process Instance Running Count',
-  'Please enter master address':'Please enter master address. e.g, master1:7077,master2:7077'
+  'Please enter master address':'Please enter master address. e.g, master1:7077,master2:7077',
+  'Please enter JVM parameters':'Please enter JVM parameters',
+  'JVM Parameters':'JVM Parameters'
 }

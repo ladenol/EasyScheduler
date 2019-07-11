@@ -187,7 +187,7 @@
         mainJar: null,
         // Master jar package(List)
         mainJarList: [],
-        // Deployment method
+        // Spark Master
         master: '',
         // Resource(list)
         resourceList: [],

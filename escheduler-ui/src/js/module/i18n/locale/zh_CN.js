@@ -461,4 +461,6 @@ export default {
   'Process Instance Running Count': '运行流程实例个数',
   'Please select a queue': '请选择队列',
   'Please enter master address':'请输入master地址。例如， master1:7077,master2:7077',
+  'Please enter JVM parameters':'请输入JVM参数',
+  'JVM Parameters':'JVM参数'
 }

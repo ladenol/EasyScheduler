@@ -271,6 +271,10 @@ let tasksType = {
   'DEPENDENT': {
     desc: 'DEPENDENT',
     color: '#2FBFD8'
+  },
+  'JAVA': {
+    desc: 'JAVA',
+    color: '#FF1111'
   }
 }
 
