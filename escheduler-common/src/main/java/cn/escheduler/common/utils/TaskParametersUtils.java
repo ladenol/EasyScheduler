@@ -24,6 +24,7 @@ import cn.escheduler.common.task.procedure.ProcedureParameters;
 import cn.escheduler.common.task.python.PythonParameters;
 import cn.escheduler.common.task.shell.ShellParameters;
 import cn.escheduler.common.task.spark.SparkParameters;
+import cn.escheduler.common.task.java.JavaParameters;
 import cn.escheduler.common.task.sql.SqlParameters;
 import cn.escheduler.common.task.subprocess.SubProcessParameters;
 import org.apache.commons.lang3.EnumUtils;
@@ -59,6 +60,8 @@ public class TaskParametersUtils {
           return JSONUtils.parseObject(parameter, MapreduceParameters.class);
         case SPARK:
           return JSONUtils.parseObject(parameter, SparkParameters.class);
+        case JAVA:
+          return JSONUtils.parseObject(parameter, JavaParameters.class);
         case PYTHON:
           return JSONUtils.parseObject(parameter, PythonParameters.class);
         case DEPENDENT:

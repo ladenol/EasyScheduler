@@ -25,6 +25,7 @@ import cn.escheduler.server.worker.task.python.PythonTask;
 import cn.escheduler.server.worker.task.shell.ShellTask;
 import cn.escheduler.server.worker.task.spark.SparkTask;
 import cn.escheduler.server.worker.task.sql.SqlTask;
+import cn.escheduler.server.worker.task.java.JavaTask;
 import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
 
@@ -59,6 +60,8 @@ public class TaskManager {
         return new PythonTask(props, logger);
       case DEPENDENT:
         return new DependentTask(props, logger);
+      case JAVA:
+        return new JavaTask(props, logger);
       default:
         logger.error("unsupport task type: {}", taskType);
         throw new IllegalArgumentException("not support task type");
