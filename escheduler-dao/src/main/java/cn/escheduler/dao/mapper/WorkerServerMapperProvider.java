@@ -34,6 +34,8 @@ public class WorkerServerMapperProvider {
             SELECT("*");
 
             FROM(TABLE_NAME);
+
+            WHERE("unix_timestamp(now()) - unix_timestamp(last_heartbeat_time) <= 60");
         }}.toString();
     }
 
