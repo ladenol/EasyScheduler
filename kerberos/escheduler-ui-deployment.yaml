@@ -12,9 +12,8 @@ spec:
         app: escheduler-ui
     spec:
       terminationGracePeriodSeconds: 60
-      hostname: pre1-escheduler-ui
       containers:
-        - image: 10.19.248.12:30100/tools/dep-centos7-eschedulerui-1.0.4:0.6-ping
+        - image: 10.19.248.12:30100/tools/dep-centos7-eschedulerui-1.0.4:0.8-ping
           name: escheduler-ui
           imagePullPolicy: IfNotPresent
           resources:

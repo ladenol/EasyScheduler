@@ -7,7 +7,7 @@ metadata:
   name: pre1-escheduler-api
   namespace: shentan-bigdata
 spec:
-    type: ClusterIprintf("%s,%s,%d:%s\n",__FILE__,__FUNCTION__,__LINE__,"" ); 
+  type: ClusterIP
   ports:
     - name: escheduler-api
       port: 12345
