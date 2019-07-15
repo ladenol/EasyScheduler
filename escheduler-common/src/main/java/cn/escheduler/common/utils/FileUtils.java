@@ -150,30 +150,30 @@ public class FileUtils {
      */
     public static boolean writeContent2File(String content, String filePath) {
         boolean flag = true;
-        BufferedReader bufferedReader = null;
-        BufferedWriter bufferedWriter = null;
+        BufferedInputStream bufferedIS = null;
+        BufferedOutputStream bufferedOS = null;
         try {
             File distFile = new File(filePath);
             if (!distFile.getParentFile().exists()) {
                 distFile.getParentFile().mkdirs();
             }
-            bufferedReader = new BufferedReader(new StringReader(content));
-            bufferedWriter = new BufferedWriter(new FileWriter(distFile));
-            char buf[] = new char[1024];
+            bufferedIS = new BufferedInputStream(new ByteArrayInputStream(content.getBytes("utf-8")));
+            bufferedOS = new BufferedOutputStream(new FileOutputStream(distFile));
+            byte buf[] = new byte[1024];
             int len;
-            while ((len = bufferedReader.read(buf)) != -1) {
-                bufferedWriter.write(buf, 0, len);
+            while ((len = bufferedIS.read(buf, 0, buf.length)) != -1) {
+                bufferedOS.write(buf, 0, len);
             }
-            bufferedWriter.flush();
-            bufferedReader.close();
-            bufferedWriter.close();
+            bufferedOS.flush();
+            bufferedIS.close();
+            bufferedOS.close();
         } catch (IOException e) {
             FileUtils.logger.error(e.getMessage(), e);
             flag = false;
             return flag;
         } finally {
-            IOUtils.closeQuietly(bufferedWriter);
-            IOUtils.closeQuietly(bufferedReader);
+            IOUtils.closeQuietly(bufferedOS);
+            IOUtils.closeQuietly(bufferedIS);
         }
         return flag;
     }
@@ -408,7 +408,6 @@ public class FileUtils {
     public static String readFile2Str(InputStream inputStream) throws IOException{
         String all_content=null;
         try {
-            all_content = new String();
             InputStream ins = inputStream;
             ByteArrayOutputStream outputstream = new ByteArrayOutputStream();
             byte[] str_b = new byte[1024];

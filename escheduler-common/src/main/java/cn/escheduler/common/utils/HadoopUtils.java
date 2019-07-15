@@ -161,7 +161,7 @@ public class HadoopUtils implements Closeable {
         }
 
         FSDataInputStream in = fs.open(new Path(hdfsFilePath));
-        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(in, "utf-8"));
         Stream<String> stream = br.lines().skip(skipLineNums).limit(limit);
         return stream.collect(Collectors.toList());
     }
