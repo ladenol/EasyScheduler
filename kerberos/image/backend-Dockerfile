@@ -12,3 +12,16 @@ RUN cd /opt && \
         ln -s escheduler-${ARG_VERSION} escheduler
 
 WORKDIR /opt/escheduler
+
+# Kerberos
+RUN yum install -y krb5-devel krb5-workstation
+RUN mkdir /var/log/krb5
+
+# jce
+RUN yum install -y zip unzip
+RUN yum install -y wget jsvc
+RUN wget --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie;" http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip
+RUN unzip jce_policy-8.zip -d /usr/local/
+RUN mv /usr/local/UnlimitedJCEPolicyJDK8/*.jar $JAVA_HOME/jre/lib/security/
+RUN rm jce_policy-8.zip
+

@@ -27,19 +27,19 @@
   </property>
   <property>
     <name>dfs.namenode.rpc-address.enncloud-hadoop.nn1</name>
-    <value>%BD_SUITE_PREFIX%-namenode1:8020</value>
+    <value>%BD_SUITE_PREFIX%-namenode1-0.%SERVICE_NAME_1%%POSTFIX%:8020</value>
   </property>
   <property>
     <name>dfs.namenode.rpc-address.enncloud-hadoop.nn2</name>
-    <value>%BD_SUITE_PREFIX%-namenode2:8020</value>
+    <value>%BD_SUITE_PREFIX%-namenode2-0.%SERVICE_NAME_2%%POSTFIX%:8020</value>
   </property>
   <property>
     <name>dfs.namenode.http-address.enncloud-hadoop.nn1</name>
-    <value>%BD_SUITE_PREFIX%-namenode1:50070</value>
+    <value>%BD_SUITE_PREFIX%-namenode1-0.%SERVICE_NAME_1%%POSTFIX%:50070</value>
   </property>
   <property>
     <name>dfs.namenode.http-address.enncloud-hadoop.nn2</name>
-    <value>%BD_SUITE_PREFIX%-namenode2:50070</value>
+    <value>%BD_SUITE_PREFIX%-namenode2-0.%SERVICE_NAME_2%%POSTFIX%:50070</value>
   </property>
   <property>
     <name>dfs.client.failover.proxy.provider.enncloud-hadoop</name>

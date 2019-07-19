@@ -29,6 +29,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.yarn.client.cli.RMAdminCLI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,9 +41,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static cn.escheduler.common.Constants.*;
-import static cn.escheduler.common.utils.PropertyUtils.getInt;
-import static cn.escheduler.common.utils.PropertyUtils.getString;
-import static cn.escheduler.common.utils.PropertyUtils.getPrefixedProperties;
+import static cn.escheduler.common.utils.PropertyUtils.*;
 
 /**
  * hadoop utils
@@ -73,6 +72,17 @@ public class HadoopUtils implements Closeable {
                 if (configuration == null) {
                     try {
                         configuration = new Configuration();
+                        // kerberos authentication
+                        if (getBoolean(Constants.HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE)){
+                            System.setProperty(Constants.JAVA_SECURITY_KRB5_CONF,
+                                    getString(Constants.JAVA_SECURITY_KRB5_CONF_PATH));
+                            configuration.set(Constants.HADOOP_SECURITY_AUTHENTICATION,"kerberos");
+                            UserGroupInformation.setConfiguration(configuration);
+                            logger.info("login as " + getString(Constants.LOGIN_USER_KEY_TAB_PRINCIPAL));
+                            UserGroupInformation.loginUserFromKeytab(getString(Constants.LOGIN_USER_KEY_TAB_PRINCIPAL),
+                                    getString(Constants.LOGIN_USER_KEY_TAB_PATH));
+                        }
+
                         String defaultFS = configuration.get(FS_DEFAULTFS);
                         //first get key from core-site.xml hdfs-site.xml ,if null ,then try to get from properties file
                         // the default is the local file system

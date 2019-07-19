@@ -35,13 +35,11 @@ config.gypi
 test/coverage
 /docs/zh_CN/介绍
 /docs/zh_CN/贡献代码.md
-/escheduler-common/src/main/resources/zookeeper.properties
 escheduler-alert/logs/
 escheduler-alert/src/main/resources/alert.properties_bak
 escheduler-alert/src/main/resources/logback.xml
 escheduler-server/src/main/resources/logback.xml
 escheduler-ui/dist
 escheduler-ui/src/js/conf/home/pages/projects/pages/taskInstance/index.vue
-/escheduler-dao/src/main/resources/dao/data_source.properties
 kerberos/image/*.tar.gz
 kerberos/image/dist

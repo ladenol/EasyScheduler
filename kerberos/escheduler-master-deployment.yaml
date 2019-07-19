@@ -36,9 +36,19 @@ spec:
             - name: BD_MYSQL_PASSWD
               value: "123456"
             - name: BD_SUITE_PREFIX
-              value: pre1
+              value: a4
             - name: BD_ZOOKEEPER_SERVERS
               value: pre1-zookeeper1:2181,pre1-zookeeper2:2181,pre1-zookeeper3:2181
+            - name: HADOOP_ZOOKEEPER_SERVERS
+              value: a4-securedzookeeper1.shentan-bigdata.svc.enn.cn:2181,a4-securedzookeeper2.shentan-bigdata.svc.enn.cn:2181,a4-securedzookeeper3.shentan-bigdata.svc.enn.cn:2181
+            - name: SERVICE_NAME_1
+              value: a4-namenode1
+            - name: SERVICE_NAME_2
+              value: a4-namenode2
+            - name: POSTFIX
+              value: .shentan-bigdata.svc.enn.cn
+            - name: KDC_SERVICE
+              value: a4-kerberos1
           volumeMounts:
             - mountPath: /opt/mntcephutils
               name: pre1-escheduler-backend-util 

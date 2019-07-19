@@ -112,6 +112,20 @@ springMaxRequestSize="1024MB"
 # api 最大post请求大小
 apiMaxHttpPostSize="5000000"
 
+# kerberos 配置
+# kerberos 是否启动
+kerberosStartUp="true"
+
+# kdc krb5 配置文件路径
+krb5ConfPath="/etc/krb5.conf"
+
+# keytab 用户名
+keytabPrincipal="root/easyscheduler@ENNCLOUD.COM"
+
+# 用户 keytab路径
+keytabPath="/opt/mntcephutils/entry/easyscheduler.keytab"
+
+
 # 1,替换文件
 echo "1,替换文件"
 sed -i "s#spring.datasource.url.*#spring.datasource.url=jdbc:mysql://${BD_MYSQL_SERVER}/escheduler?characterEncoding=UTF-8#g" conf/dao/data_source.properties
@@ -167,8 +181,17 @@ sed -i "s#workers.*#workers=${workers}#g" conf/config/run_config.conf
 sed -i "s#alertServer.*#alertServer=${alertServer}#g" conf/config/run_config.conf
 sed -i "s#apiServers.*#apiServers=${apiServers}#g" conf/config/run_config.conf
 
-sed -i "s#%BD_ZOOKEEPER_SERVERS%#${BD_ZOOKEEPER_SERVERS}#g" conf/core-site.xml
+sed -i "s#%BD_ZOOKEEPER_SERVERS%#${HADOOP_ZOOKEEPER_SERVERS}#g" conf/core-site.xml
 sed -i "s#%BD_SUITE_PREFIX%#${BD_SUITE_PREFIX}#g" conf/hdfs-site.xml
+sed -i "s#%SERVICE_NAME_1%#${SERVICE_NAME_1}#g" conf/hdfs-site.xml
+sed -i "s#%SERVICE_NAME_2%#${SERVICE_NAME_2}#g" conf/hdfs-site.xml
+sed -i "s#%POSTFIX%#${POSTFIX}#g" conf/hdfs-site.xml
+sed -i "s#%KDC_SERVICE%#${KDC_SERVICE}#g" /etc/krb5.conf
+
+sed -i "s#hadoop.security.authentication.startup.state.*#hadoop.security.authentication.startup.state=${kerberosStartUp}#g" conf/common/common.properties
+sed -i "s#java.security.krb5.conf.path.*#java.security.krb5.conf.path=${krb5ConfPath}#g" conf/common/common.properties
+sed -i "s#login.user.keytab.principal.*#login.user.keytab.principal=${keytabPrincipal}#g" conf/common/common.properties
+sed -i "s#login.user.keytab.path.*#login.user.keytab.path=${keytabPath}#g" conf/common/common.properties
 
 
 # 2,创建目录

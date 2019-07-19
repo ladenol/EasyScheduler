@@ -835,8 +835,34 @@ public final class Constants {
     public static final String DEPENDENT_SPLIT = ":||";
     public static final String DEPENDENT_ALL = "ALL";
 
+    /**
+     * java.security.krb5.conf
+     */
+    public static final String JAVA_SECURITY_KRB5_CONF = "java.security.krb5.conf";
 
     /**
-     *
+     * java.security.krb5.conf.path
      */
+    public static final String JAVA_SECURITY_KRB5_CONF_PATH = "java.security.krb5.conf.path";
+
+    /**
+     * hadoop.security.authentication
+     */
+    public static final String HADOOP_SECURITY_AUTHENTICATION = "hadoop.security.authentication";
+
+    /**
+     * hadoop.security.authentication
+     */
+    public static final String HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE = "hadoop.security.authentication.startup.state";
+
+
+    /**
+     * loginUserFromKeytab user
+     */
+    public static final String LOGIN_USER_KEY_TAB_PRINCIPAL = "login.user.keytab.principal";
+
+    /**
+     * loginUserFromKeytab path
+     */
+    public static final String LOGIN_USER_KEY_TAB_PATH = "login.user.keytab.path";
 }
