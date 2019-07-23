@@ -867,16 +867,6 @@ public final class Constants {
     public static final String LOGIN_USER_KEY_TAB_PATH = "login.user.keytab.path";
 
     /**
-     * java.security.auth.login.config
-     */
-    public static final String JAVA_SECURITY_AUTH_LOGIN_CONFIG = "java.security.auth.login.config";
-
-    /**
-     * impala jaas.conf path
-     */
-    public static final String IMPALA_JAAS_CONF_PATH = "impala.jaas.conf.path";
-
-    /**
      * krb.host.fqdn
      */
     public static final String KRB_HOST_FQDN = "krb.host.fqdn";
