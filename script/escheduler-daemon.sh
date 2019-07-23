@@ -28,7 +28,7 @@ export ESCHEDULER_LOG_DIR=$ESCHEDULER_HOME/logs
 export ESCHEDULER_CONF_DIR=$ESCHEDULER_HOME/conf
 export ESCHEDULER_LIB_JARS=$ESCHEDULER_HOME/lib/*
 
-export ESCHEDULER_OPTS="-server -Xmx16g -Xms4g -Xss512k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70"
+export ESCHEDULER_OPTS="-server -Xmx16g -Xms4g -Xss512k -XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:LargePageSizeInBytes=128m -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=70 -Djava.security.auth.login.config=/opt/mntcephutils/entry/jaas.conf"
 export STOP_TIMEOUT=5
 
 if [ ! -d "$ESCHEDULER_LOG_DIR" ]; then

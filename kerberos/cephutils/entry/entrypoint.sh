@@ -6,7 +6,6 @@ cp install.sh /opt/escheduler/
 cp monitor-logger.sh /opt/escheduler/
 cp escheduler_env.sh /opt/escheduler/conf/env/.escheduler_env.sh
 cp krb5.conf /etc/krb5.conf
-cp escheduler-daemon.sh /opt/escheduler/bin/
 
 cd /opt/escheduler/
 
