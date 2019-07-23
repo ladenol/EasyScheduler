@@ -30,7 +30,6 @@ import cn.escheduler.dao.model.Resource;
 import cn.escheduler.dao.model.User;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.sun.security.auth.module.Krb5LoginModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +40,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
-
-import static cn.escheduler.common.utils.PropertyUtils.getBoolean;
-import static cn.escheduler.common.utils.PropertyUtils.getString;
 
 /**
  * datasource service
