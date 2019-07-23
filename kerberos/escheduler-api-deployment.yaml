@@ -13,7 +13,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.6-ping
+        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:0.1-ljc
           name: escheduler-api
           imagePullPolicy: IfNotPresent
           ports:

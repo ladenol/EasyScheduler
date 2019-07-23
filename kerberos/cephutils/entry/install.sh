@@ -125,6 +125,9 @@ keytabPrincipal="root/easyscheduler@ENNCLOUD.COM"
 # 用户 keytab路径
 keytabPath="/opt/mntcephutils/entry/easyscheduler.keytab"
 
+# haproxy/impala service全域名
+krbHostFQDN="a4-haproxy1-ex.shentan-bigdata.svc.enn.cn"
+
 
 # 1,替换文件
 echo "1,替换文件"
@@ -192,7 +195,7 @@ sed -i "s#hadoop.security.authentication.startup.state.*#hadoop.security.authent
 sed -i "s#java.security.krb5.conf.path.*#java.security.krb5.conf.path=${krb5ConfPath}#g" conf/common/common.properties
 sed -i "s#login.user.keytab.principal.*#login.user.keytab.principal=${keytabPrincipal}#g" conf/common/common.properties
 sed -i "s#login.user.keytab.path.*#login.user.keytab.path=${keytabPath}#g" conf/common/common.properties
-
+sed -i "s#krb.host.fqdn.*#krb.host.fqdn=${krbHostFQDN}#g" conf/common/common.properties
 
 # 2,创建目录
 echo "2,创建目录"
