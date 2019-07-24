@@ -29,6 +29,7 @@ import cn.escheduler.common.task.sql.SqlBinds;
 import cn.escheduler.common.task.sql.SqlParameters;
 import cn.escheduler.common.task.sql.SqlType;
 import cn.escheduler.common.utils.CollectionUtils;
+import cn.escheduler.common.utils.HadoopUtils;
 import cn.escheduler.common.utils.ParameterUtils;
 import cn.escheduler.dao.AlertDao;
 import cn.escheduler.dao.DaoFactory;
@@ -45,16 +46,23 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static cn.escheduler.alert.utils.PropertyUtils.getString;
+
 /**
  *  sql task
  */
 public class SqlTask extends AbstractTask {
+
+    public static final String xlsFilePath = getString(cn.escheduler.alert.utils.Constants.XLS_FILE_PATH);
 
     /**
      *  sql parameters
@@ -268,31 +276,41 @@ public class SqlTask extends AbstractTask {
                 // decide whether to executeQuery or executeUpdate based on sqlType
                 if (sqlParameters.getSqlType() == SqlType.QUERY.ordinal()) {
                     // query statements need to be convert to JsonArray and inserted into Alert to send
-                    JSONArray array = new JSONArray();
                     ResultSet resultSet = stmt.executeQuery();
                     ResultSetMetaData md = resultSet.getMetaData();
                     int num = md.getColumnCount();
+                    ArrayList<String> row = new ArrayList<String>();
+                    ArrayList<String> column = new ArrayList<String>(num);
+
+                    for(int i=1; i<=num; i++) {
+                        column.add(md.getColumnName(i));
+                    }
+                    row.add(StringUtils.join(column, ','));
 
                     while (resultSet.next()) {
-                        JSONObject mapOfColValues = new JSONObject(true);
+                        column.clear();
                         for (int i = 1; i <= num; i++) {
-                            mapOfColValues.put(md.getColumnName(i), resultSet.getObject(i));
-                        }
-                        array.add(mapOfColValues);
-                    }
-
-                    logger.info("execute sql : {}", JSONObject.toJSONString(array, SerializerFeature.WriteMapNullValue));
-
-                    // send as an attachment
-                    if (StringUtils.isEmpty(sqlParameters.getShowType())) {
-                        logger.info("showType is empty,don't need send email");
-                    } else {
-                        if (array.size() > 0) {
-                            if (StringUtils.isNotEmpty(sqlParameters.getTitle())) {
-                                sendAttachment(sqlParameters.getTitle(), JSONObject.toJSONString(array, SerializerFeature.WriteMapNullValue));
-                            }else{
-                                sendAttachment(taskProps.getNodeName() + " query resultsets ", JSONObject.toJSONString(array, SerializerFeature.WriteMapNullValue));
+                            String value = resultSet.getString(i);
+                            if(value.indexOf('"') >= 0) {
+                                value = value.replaceAll("\"", "\"\"");
+                                column.add(String.format("\"%s\"", value));
+                            } else if(value.indexOf(',') >= 0) {
+                                column.add(String.format("\"%s\"", value));
+                            } else {
+                                column.add(value);
                             }
+                        }
+                        row.add(StringUtils.join(column, ','));
+                    }
+                    String content = StringUtils.join(row, '\n');
+
+                    logger.info("execute sql : {}", column.toString());
+
+                    if (StringUtils.isEmpty(sqlParameters.getShowType())) {
+                        logger.info("showType is empty,don't need upload");
+                    } else {
+                        if (column.size() > 1) {
+                            uploadResult(content);
                         }
                     }
 
@@ -316,6 +334,33 @@ public class SqlTask extends AbstractTask {
             throw new RuntimeException(e.getMessage());
         }
         return connection;
+    }
+
+    private void uploadResult(String content) {
+        int taskInstanceId = taskProps.getTaskInstId();
+        ProcessInstance pi = processDao.findProcessInstanceByTaskId(taskInstanceId);
+        TaskInstance ti = processDao.findTaskInstanceById(taskInstanceId);
+        String fileName = String.format("%s_%s.csv", ti.getName(), pi.getName());
+        String desc = String.format("sql result for %s_%s", ti.getName(), pi.getName());
+        User loginUser = processDao.findLoginUserByTaskInstanceId(taskInstanceId);
+        // make csv file
+        String srcPath = String.format("%s/%s-%s", xlsFilePath, fileName, UUID.randomUUID());
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(srcPath))) {
+            bw.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // upload to hdfs
+        HadoopUtils hadoop = HadoopUtils.getInstance();
+        String dstHdfsPath = hadoop.getHdfsFilename(processDao.findTenantById(loginUser.getTenantId()).getTenantCode(), fileName);
+        try {
+            hadoop.copyLocalToHdfs(srcPath, dstHdfsPath, true, true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // add to resource
+        int resourceId = processDao.createSqlSelectResource(loginUser, fileName, content.getBytes().length, desc);
+        logger.info("insert id {}", resourceId);
     }
 
     private PreparedStatement prepareStatementAndBind(Connection connection, SqlBinds sqlBinds) throws Exception {

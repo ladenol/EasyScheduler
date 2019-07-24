@@ -142,7 +142,7 @@ execPath="/tmp/escheduler/exec"
 shellEnvPath="$installPath/conf/env/.escheduler_env.sh"
 
 # 资源文件的后缀
-resSuffixs="txt,log,sh,conf,cfg,py,java,sql,hql,xml"
+resSuffixs="txt,log,sh,conf,cfg,py,java,sql,hql,xml,csv"
 
 # 开发状态,如果是true,对于SHELL脚本可以在execPath目录下查看封装后的SHELL脚本,如果是false则执行完成直接删除
 devState="true"

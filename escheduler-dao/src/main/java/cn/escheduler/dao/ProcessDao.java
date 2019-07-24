@@ -64,6 +64,9 @@ public class ProcessDao extends AbstractBaseDao {
     private UserMapper userMapper;
 
     @Autowired
+    private TenantMapper tenantMapper;
+
+    @Autowired
     private ProcessDefinitionMapper processDefineMapper;
 
     @Autowired
@@ -111,6 +114,7 @@ public class ProcessDao extends AbstractBaseDao {
     @Override
     protected void init() {
         userMapper=getMapper(UserMapper.class);
+        tenantMapper=getMapper(TenantMapper.class);
         processDefineMapper = getMapper(ProcessDefinitionMapper.class);
         processInstanceMapper = getMapper(ProcessInstanceMapper.class);
         dataSourceMapper = getMapper(DataSourceMapper.class);
@@ -1117,6 +1121,24 @@ public class ProcessDao extends AbstractBaseDao {
 
     public TaskInstance findTaskInstanceById(Integer taskId){
         return taskInstanceMapper.queryById(taskId);
+    }
+
+    public User findLoginUserByTaskInstanceId(Integer taskId){
+        return userMapper.queryById(
+                processDefineMapper.queryByDefineId(
+                taskInstanceMapper.queryById(taskId).getProcessDefinitionId()
+                ).getUserId());
+    }
+
+    public Tenant findTenantById(Integer id) {
+        return tenantMapper.queryById(id);
+    }
+
+    public int createSqlSelectResource(User user, String fileName, long size, String desc) {
+        Date now = new Date();
+        Resource resource = new Resource(fileName, fileName, desc, user.getId(), ResourceType.FILE, size, now, now);
+        resourceMapper.insert(resource);
+        return resource.getId();
     }
 
     /**

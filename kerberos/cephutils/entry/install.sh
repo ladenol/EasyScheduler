@@ -45,7 +45,7 @@ execPath="/opt/escheduler/data/exec"
 xlsFilePath="/opt/escheduler/data/xls"
 
 # 资源文件的后缀
-resSuffixs="txt,log,sh,conf,cfg,py,java,sql,hql,xml"
+resSuffixs="txt,log,sh,conf,cfg,py,java,sql,hql,xml,csv"
 
 # zk 配置
 # zk session 超时
