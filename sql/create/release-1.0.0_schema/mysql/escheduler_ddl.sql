@@ -351,6 +351,7 @@ CREATE TABLE `t_escheduler_task_instance` (
   `retry_interval` int(4) DEFAULT NULL COMMENT '重试间隔',
   `max_retry_times` int(2) DEFAULT NULL COMMENT '最大重试次数',
   `task_instance_priority` int(11) DEFAULT NULL COMMENT '任务实例优先级：0 Highest,1 High,2 Medium,3 Low,4 Lowest',
+  `resource_id` int(11) NOT NULL DEFAULT '-1' COMMENT 'select语句执行结果对应的资源id',
   PRIMARY KEY (`id`),
   KEY `process_instance_id` (`process_instance_id`) USING BTREE,
   KEY `task_instance_index` (`process_definition_id`,`process_instance_id`) USING BTREE,

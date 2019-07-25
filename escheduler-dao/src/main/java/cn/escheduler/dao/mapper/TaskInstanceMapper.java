@@ -89,7 +89,8 @@ public interface TaskInstanceMapper {
             @Result(property = "duration", column = "duration", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "flag", column = "flag", typeHandler = EnumOrdinalTypeHandler.class, javaType = Flag.class, jdbcType = JdbcType.TINYINT),
             @Result(property = "workerGroupId", column = "worker_group_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT)
+            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT),
+            @Result(property = "resourceId", column = "resource_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
     @SelectProvider(type = TaskInstanceMapperProvider.class, method = "queryById")
     TaskInstance queryById(@Param("taskInstanceId") int taskInstanceId);
@@ -133,7 +134,8 @@ public interface TaskInstanceMapper {
             @Result(property = "duration", column = "duration", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "flag", column = "flag", typeHandler = EnumOrdinalTypeHandler.class, javaType = Flag.class, jdbcType = JdbcType.TINYINT),
             @Result(property = "workerGroupId", column = "worker_group_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT)
+            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT),
+            @Result(property = "resourceId", column = "resource_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
     @SelectProvider(type = TaskInstanceMapperProvider.class, method = "findValidTaskListByProcessId")
     List<TaskInstance> findValidTaskListByProcessId(@Param("processInstanceId") Integer processInstanceId,
@@ -167,7 +169,8 @@ public interface TaskInstanceMapper {
             @Result(property = "duration", column = "duration", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "flag", column = "flag", typeHandler = EnumOrdinalTypeHandler.class, javaType = Flag.class, jdbcType = JdbcType.TINYINT),
             @Result(property = "workerGroupId", column = "worker_group_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT)
+            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT),
+            @Result(property = "resourceId", column = "resource_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
     @SelectProvider(type = TaskInstanceMapperProvider.class, method = "queryByHostAndStatus")
     List<TaskInstance> queryByHostAndStatus(@Param("host") String host,@Param("states") int[] stateArray);
@@ -259,7 +262,8 @@ public interface TaskInstanceMapper {
             @Result(property = "duration", column = "duration", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "flag", column = "flag", typeHandler = EnumOrdinalTypeHandler.class, javaType = Flag.class, jdbcType = JdbcType.TINYINT),
             @Result(property = "workerGroupId", column = "worker_group_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT)
+            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT),
+            @Result(property = "resourceId", column = "resource_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
     @SelectProvider(type = TaskInstanceMapperProvider.class, method = "queryTaskInstanceListPaging")
     List<TaskInstance> queryTaskInstanceListPaging(
@@ -304,7 +308,8 @@ public interface TaskInstanceMapper {
             @Result(property = "duration", column = "duration", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "flag", column = "flag", typeHandler = EnumOrdinalTypeHandler.class, javaType = Flag.class, jdbcType = JdbcType.TINYINT),
             @Result(property = "workerGroupId", column = "worker_group_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER),
-            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT)
+            @Result(property = "taskInstancePriority", column = "task_instance_priority", javaType = Priority.class, typeHandler = EnumOrdinalTypeHandler.class, jdbcType = JdbcType.TINYINT),
+            @Result(property = "resourceId", column = "resource_id", javaType = Integer.class, jdbcType = JdbcType.INTEGER)
     })
     @SelectProvider(type = TaskInstanceMapperProvider.class, method = "queryByInstanceIdAndName")
     TaskInstance queryByInstanceIdAndName(@Param("processInstanceId") int processInstanceId,
@@ -323,4 +328,12 @@ public interface TaskInstanceMapper {
                         @Param("userType") UserType userType,
                         @Param("projectId") int projectId,
                         @Param("taskIds") int[] taskIds);
+
+    
+    @UpdateProvider(type = TaskInstanceMapperProvider.class, method = "updateResourceIdById")
+    int updateResourceIdById(@Param("taskInstanceId") int taskInstanceId,
+                            @Param("resourceId") int resourceId);
+
+    @DeleteProvider(type = TaskInstanceMapperProvider.class, method = "deleteResource")
+    int deleteResource(@Param("resourceId") int resourceId);
 }

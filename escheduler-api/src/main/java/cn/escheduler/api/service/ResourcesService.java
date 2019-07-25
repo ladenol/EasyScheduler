@@ -66,6 +66,9 @@ public class ResourcesService extends BaseService {
     @Autowired
     private ResourcesUserMapper resourcesUserMapper;
 
+    @Autowired
+    private TaskInstanceMapper taskInstanceMapper;
+
     /**
      * create resource
      *
@@ -403,6 +406,8 @@ public class ResourcesService extends BaseService {
             putMsg(result, Status.USER_NO_OPERATION_PERM);
             return result;
         }
+
+        taskInstanceMapper.deleteResource(resourceId);
 
         String tenantCode = tenantMapper.queryById(loginUser.getTenantId()).getTenantCode();
         String hdfsFilename = "";

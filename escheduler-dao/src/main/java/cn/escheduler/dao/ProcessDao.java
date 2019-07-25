@@ -1137,8 +1137,12 @@ public class ProcessDao extends AbstractBaseDao {
     public int createSqlSelectResource(User user, String fileName, long size, String desc) {
         Date now = new Date();
         Resource resource = new Resource(fileName, fileName, desc, user.getId(), ResourceType.FILE, size, now, now);
-        resourceMapper.insert(resource);
-        return resource.getId();
+        return resourceMapper.insert(resource) > 0 ? resource.getId() : -1;
+    }
+
+    public boolean updateTaskInstanceResourceById(int instanceId, int resourceId) {
+        int count = taskInstanceMapper.updateResourceIdById(instanceId, resourceId);
+        return count > 0;
     }
 
     /**

@@ -361,6 +361,7 @@ public class SqlTask extends AbstractTask {
         // add to resource
         int resourceId = processDao.createSqlSelectResource(loginUser, fileName, content.getBytes().length, desc);
         logger.info("insert id {}", resourceId);
+        processDao.updateTaskInstanceResourceById(taskInstanceId, resourceId);
     }
 
     private PreparedStatement prepareStatementAndBind(Connection connection, SqlBinds sqlBinds) throws Exception {

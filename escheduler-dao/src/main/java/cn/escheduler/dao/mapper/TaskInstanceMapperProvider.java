@@ -443,5 +443,30 @@ public class TaskInstanceMapperProvider {
         }.toString();
     }
 
+    public String updateResourceIdById(Map<String, Object> parameter) {
+
+        return new SQL() {
+            {
+                UPDATE(TABLE_NAME);
+
+                SET("`resource_id`=#{resourceId}");
+
+                WHERE("`id`=#{taskInstanceId}");
+            }
+        }.toString();
+    }
+
+    public String deleteResource(Map<String, Object> paramter) {
+
+        return new SQL() {
+            {
+                UPDATE(TABLE_NAME);
+
+                SET("`resource_id`= -1");
+
+                WHERE("`resource_id`=#{resourceId}");
+            }
+        }.toString();
+    }
 
 }

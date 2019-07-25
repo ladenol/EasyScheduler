@@ -181,13 +181,13 @@ public class TaskInstance {
      */
     private String dependentResult;
 
-
     /**
      * worker group id
      * @return
      */
     private int workerGroupId;
 
+    private int resourceId;
 
     public ProcessInstance getProcessInstance() {
         return processInstance;
@@ -458,6 +458,14 @@ public class TaskInstance {
         this.workerGroupId = workerGroupId;
     }
 
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
     @Override
     public String toString() {
         return "TaskInstance{" +
@@ -490,6 +498,7 @@ public class TaskInstance {
                 ", taskInstancePriority=" + taskInstancePriority +
                 ", processInstancePriority=" + processInstancePriority +
                 ", workGroupId=" + workerGroupId +
+                ", resourceId=" + resourceId +
                 '}';
     }
 
