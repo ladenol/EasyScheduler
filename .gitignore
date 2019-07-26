@@ -40,6 +40,5 @@ escheduler-alert/src/main/resources/alert.properties_bak
 escheduler-alert/src/main/resources/logback.xml
 escheduler-server/src/main/resources/logback.xml
 escheduler-ui/dist
-escheduler-ui/src/js/conf/home/pages/projects/pages/taskInstance/index.vue
 kerberos/image/*.tar.gz
 kerberos/image/dist

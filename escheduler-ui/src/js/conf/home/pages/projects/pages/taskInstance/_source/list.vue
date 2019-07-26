@@ -36,7 +36,7 @@
           <th width="84">
             <span>{{$t('Retry Count')}}</span>
           </th>
-          <th width="50">
+          <th width="102">
             <span>{{$t('Operation')}}</span>
           </th>
         </tr>
@@ -69,6 +69,39 @@
                     icon="iconfont icon-xitongcaozuorizhi"
                     @click="_refreshLog(item)">
             </x-button>
+            <x-button
+                    type="info"
+                    shape="circle"
+                    size="xsmall"
+                    data-toggle="tooltip"
+                    :title="$t('Download')"
+                    :disabled="_rtDisb(item)"
+                    @click="_downloadFile(item)"
+                    icon="iconfont icon-download"
+                    v-ps="['GENERAL_USER']">
+            </x-button>
+	    <x-poptip
+                    :ref="'poptip-' + $index"
+                    placement="bottom-end"
+                    width="90">
+              <p>{{$t('Delete?')}}</p>
+              <div style="text-align: right; margin: 0;padding-top: 4px;">
+                <x-button type="text" size="xsmall" shape="circle" @click="_closeDelete($index)">{{$t('Cancel')}}</x-button>
+                <x-button type="primary" size="xsmall" shape="circle" @click="_delete(item,$index)">{{$t('Confirm')}}</x-button>
+              </div>
+              <template slot="reference">
+                <x-button
+                        icon="iconfont icon-shanchu"
+                        type="error"
+                        shape="circle"
+                        size="xsmall"
+                        data-toggle="tooltip"
+                        :title="$t('delete')"
+                        :disabled="_rtDisb(item)"
+                        v-ps="['GENERAL_USER']">
+                </x-button>
+              </template>
+            </x-poptip>
           </td>
         </tr>
       </table>
@@ -77,8 +110,11 @@
 </template>
 <script>
   import Permissions from '@/module/permissions'
+  import { mapActions } from 'vuex'
   import mLog from '@/conf/home/pages/dag/_source/formModel/log'
+  import localStore from '@/module/util/localStorage'
   import { tasksState } from '@/conf/home/pages/dag/_source/config'
+  import { downloadFile } from '@/module/download'
 
   export default {
     name: 'list',
@@ -95,9 +131,36 @@
       pageSize: Number
     },
     methods: {
+      ...mapActions('resource', ['deleteResource']),
+      _rtDisb (item) {
+	return item.resourceId == -1
+      },
+      _downloadFile (item) {
+        downloadFile('/escheduler/resources/download', {
+          id: item.resourceId
+        })
+      },
+      _closeDelete (i) {
+        this.$refs[`poptip-${i}`][0].doClose()
+      },
+      _delete (item, i) {
+        this.deleteResource({
+          id: item.resourceId
+        }).then(res => {
+          this.$refs[`poptip-${i}`][0].doClose()
+          this.$message.success(res.msg)
+          this._onUpdate()
+        }).catch(e => {
+          this.$refs[`poptip-${i}`][0].doClose()
+          this.$message.error(e.msg || '')
+        })
+      },
       _rtState (code) {
         let o = tasksState[code]
         return `<em class="iconfont ${o.isSpin ? 'fa fa-spin' : ''}" style="color:${o.color}" data-toggle="tooltip" data-container="body" title="${o.desc}">${o.icoUnicode}</em>`
+      },
+      _onUpdate () {
+        this.$emit('on-update')
       },
       _refreshLog (item) {
         let self = this
