@@ -72,16 +72,6 @@ public class HadoopUtils implements Closeable {
                 if (configuration == null) {
                     try {
                         configuration = new Configuration();
-                        // kerberos authentication
-                        if (getBoolean(Constants.HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE)){
-                            System.setProperty(Constants.JAVA_SECURITY_KRB5_CONF,
-                                    getString(Constants.JAVA_SECURITY_KRB5_CONF_PATH));
-                            configuration.set(Constants.HADOOP_SECURITY_AUTHENTICATION,"kerberos");
-                            UserGroupInformation.setConfiguration(configuration);
-                            logger.info("login as " + getString(Constants.LOGIN_USER_KEY_TAB_PRINCIPAL));
-                            UserGroupInformation.loginUserFromKeytab(getString(Constants.LOGIN_USER_KEY_TAB_PRINCIPAL),
-                                    getString(Constants.LOGIN_USER_KEY_TAB_PATH));
-                        }
 
                         String defaultFS = configuration.get(FS_DEFAULTFS);
                         //first get key from core-site.xml hdfs-site.xml ,if null ,then try to get from properties file

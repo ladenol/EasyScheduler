@@ -16,7 +16,6 @@
  */
 package cn.escheduler.common.job.db;
 
-import cn.escheduler.common.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +23,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import static cn.escheduler.common.utils.PropertyUtils.getBoolean;
-import static cn.escheduler.common.utils.PropertyUtils.getString;
 
 /**
  * data source of Impala
@@ -46,12 +42,6 @@ public class ImpalaDataSource extends BaseDataSource {
       address += "/";
     }
     String jdbcUrl = address + getDatabase();
-    // kerberos authentication
-    if (getBoolean(Constants.HADOOP_SECURITY_AUTHENTICATION_STARTUP_STATE)){
-      jdbcUrl += String.format(";AuthMech=1;KrbRealm=ENNCLOUD.COM;KrbHostFQDN=%s;KrbServiceName=root", getString(Constants.KRB_HOST_FQDN));
-      logger.info("impala jdbc url is: " + jdbcUrl);
-    }
-
     if (StringUtils.isNotEmpty(getOther())) {
       jdbcUrl += "?" + getOther();
     }
