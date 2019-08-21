@@ -1,6 +1,6 @@
 USE `escheduler`;
 -- Records of t_escheduler_user,user : admin , password : escheduler123
-INSERT INTO `t_escheduler_user` VALUES ('1', 'admin', '055a97b5fcd6d120372ad1976518f371', '0', 'zhangliye@encdata.cn', '15900532616', '0', now(), now(), NULL);
+INSERT INTO `t_escheduler_user` VALUES ('1', 'admin', '055a97b5fcd6d120372ad1976518f371', '0', 'zhangliye@encdata.cn', '15900532616', '0', now(), now(), NULL), ('2', 'enncloud', 'd4be1d5c2fddb978cb12868cb18a36e4', '1', 'zhangliye@encdata.cn', '15900532616', '1', now(), now(), NULL);
 INSERT INTO `t_escheduler_alertgroup` VALUES (1, 'escheduler管理员告警组', '0', 'escheduler管理员告警组',now(), now());
 INSERT INTO `t_escheduler_tenant` VALUES (1, 'root', 'enncloud', 'enncloud默认租户', 1, now(), now());
 INSERT INTO `t_escheduler_relation_user_alertgroup` VALUES ('1', '1', '1', now(), now());

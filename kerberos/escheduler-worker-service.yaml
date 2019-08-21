@@ -2,10 +2,10 @@ workerVersion: v1
 kind: Service
 metadata:
   labels:
-    name: pre1-escheduler-worker
+    name: %PREFIX%-escheduler-worker
     app: escheduler-worker
-  name: pre1-escheduler-worker
-  namespace: shentan-bigdata
+  name: %PREFIX%-escheduler-worker
+  namespace: %NAMESPACE%
 spec:
   type: ClusterIP
   ports:

@@ -1,8 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: pre1-escheduler-ui
-  namespace: shentan-bigdata 
+  name: %PREFIX%-escheduler-ui
+  namespace: %NAMESPACE% 
 spec:
   replicas: 1
   template:
@@ -13,13 +13,13 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - image: 10.19.248.12:30100/tools/dep-centos7-eschedulerui-1.0.4:0.8-ping
+        - image: %HARBOR%/%ES_UI_IMAGE%
           name: escheduler-ui
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 4
-              memory: 8Gi
+              cpu: 1
+              memory: 4Gi
             requests:
               cpu: 1
               memory: 1Gi
@@ -31,4 +31,4 @@ spec:
             - name: BD_ESCHEDULER_ROLE
               value: ui-server
             - name: BD_SUITE_PREFIX
-              value: pre1
+              value: %PREFIX%

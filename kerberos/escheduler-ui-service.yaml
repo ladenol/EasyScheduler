@@ -2,10 +2,10 @@ uiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: pre1-escheduler-ui
+    name: %PREFIX%-escheduler-ui
     app: escheduler-ui
-  name: pre1-escheduler-ui
-  namespace: shentan-bigdata
+  name: %PREFIX%-escheduler-ui
+  namespace: %NAMESPACE%
 spec:
   type: NodePort
   ports:

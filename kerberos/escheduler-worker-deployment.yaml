@@ -1,8 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: pre1-escheduler-worker
-  namespace: shentan-bigdata 
+  name: %PREFIX%-escheduler-worker
+  namespace: %NAMESPACE% 
 spec:
   replicas: 1
   template:
@@ -13,13 +13,13 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - image: 10.19.248.12:30100/tools/dep-centos7-escheduler-1.0.4:st-0.1
+        - image: %HARBOR%/%ES_BACKEND_IMAGE%
           name: escheduler-worker
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu: 4
-              memory: 8Gi
+              cpu: 1
+              memory: 4Gi
             requests:
               cpu: 1
               memory: 1Gi
@@ -30,20 +30,28 @@ spec:
             - name: BD_ESCHEDULER_ROLE
               value: worker-server
             - name: BD_MYSQL_SERVER
-              value: pre1-mysql1
+              value: %MYSQL_SERVER%
             - name: BD_MYSQL_USERNAME
-              value: root
+              value: %MYSQL_USERNAME%
             - name: BD_MYSQL_PASSWD
-              value: "123456"
+              value: "%MYSQL_PASSWD%"
             - name: BD_SUITE_PREFIX
-              value: pre1
+              value: %PREFIX%
             - name: BD_ZOOKEEPER_SERVERS
-              value: pre1-zookeeper1:2181,pre1-zookeeper2:2181,pre1-zookeeper3:2181
+              value: %ZK%
           volumeMounts:
-            - mountPath: /opt/mntcephutils
-              name: pre1-escheduler-backend-util 
+            - mountPath: /opt/mntcephutils/entry
+              name: utilsentry
+              readOnly: true
             - mountPath: /opt/escheduler/data
-              name: pre1-escheduler-backend-data
+              name: %PREFIX%-escheduler-backend-data
+              readOnly: false
       storage:
-        - name: pre1-escheduler-backend-util 
-        - name: pre1-escheduler-backend-data
+        - name: %PREFIX%-escheduler-backend-data
+      volumes:
+        - configMap:
+            name: %PREFIX%-easyscheduler-entry
+          name: utilsentry
+        - configMap:
+            name: %PREFIX%-easyscheduler-sql
+          name: utilssql
