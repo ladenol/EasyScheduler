@@ -78,4 +78,4 @@ The fastest way to get response from our developers is to submit issues,   or ad
 
 
 
-
+mvn -U clean package assembly:assembly -Dmaven.test.skip=true
