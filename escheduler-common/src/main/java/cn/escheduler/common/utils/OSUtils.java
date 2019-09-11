@@ -270,6 +270,8 @@ public class OSUtils {
    * @return
    */
   public static Boolean checkResource(Configuration conf, Boolean isMaster){
+    return true;
+    /*
     double systemCpuLoad;
     double systemReservedMemory;
 
@@ -292,6 +294,7 @@ public class OSUtils {
     }else{
       return true;
     }
+    */
   }
 
 }

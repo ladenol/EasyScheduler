@@ -72,10 +72,4 @@ Easy Scheduler使用了很多优秀的开源项目，比如google的guava、guic
 ### 帮助
 The fastest way to get response from our developers is to submit issues,   or add our wechat : 510570367
  
-
-
-
-
-
-
-
+mvn -U clean package assembly:assembly -Dmaven.test.skip=true

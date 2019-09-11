@@ -86,7 +86,7 @@ public class MasterSchedulerThread implements Runnable {
                         // make sure to scan and delete command  table in one transaction
                         processInstance = processDao.scanCommand(logger, OSUtils.getHost(), this.masterExecThreadNum - activeCount);
                         if (processInstance != null) {
-                            logger.info("start master exex thread , split DAG ...");
+                            logger.info("start master exec thread , split DAG ...");
                             masterExecService.execute(new MasterExecThread(processInstance));
                         }
                     }
