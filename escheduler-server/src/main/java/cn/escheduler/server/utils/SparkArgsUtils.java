@@ -64,14 +64,17 @@ public class SparkArgsUtils {
             args.add(param.getDriverMemory());
         }
 
-        if (param.getNumExecutors() != 0) {
-            args.add(Constants.NUM_EXECUTORS);
-            args.add(String.format("%d", param.getNumExecutors()));
+        if (param.getTotalExecutorCores() != 0) {
+            args.add(Constants.TOTAL_EXECUTOR_CORES);
+            args.add(String.format("%d", param.getTotalExecutorCores()));
         }
 
         if (param.getExecutorCores() != 0) {
             args.add(Constants.EXECUTOR_CORES);
             args.add(String.format("%d", param.getExecutorCores()));
+        } else {
+            args.add(Constants.EXECUTOR_CORES);
+            args.add(String.format("%d", 1));
         }
 
         if (StringUtils.isNotEmpty(param.getExecutorMemory())) {

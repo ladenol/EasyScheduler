@@ -84,13 +84,13 @@
         </span>
       </div>
       <div class="clearfix list">
-        <span class="sp1">{{$t('Number of Executors')}}</span>
+        <span class="sp1">{{$t('Executor core number')}}</span>
         <span class="sp2">
           <x-input
                   :disabled="isDetails"
                   type="input"
-                  v-model="numExecutors"
-                  :placeholder="$t('Please enter the number of Executor')"
+                  v-model="executorCores"
+                  :placeholder="$t('Please enter Executor core number')"
                   style="width: 200px;"
                   autocomplete="off">
         </x-input>
@@ -108,16 +108,16 @@
         </span>
       </div>
       <div class="clearfix list">
-        <span class="sp1">{{$t('Executor core number')}}</span>
+        <span class="sp1">{{$t('Total executor core number')}}</span>
         <span class="sp2">
           <x-input
                   :disabled="isDetails"
                   type="input"
-                  v-model="executorCores"
-                  :placeholder="$t('Please enter Executor core number')"
+                  v-model="totalExecutorCores"
+                  :placeholder="$t('Please enter Total executor core number')"
                   style="width: 200px;"
                   autocomplete="off">
-          </x-input>
+        </x-input>
         </span>
       </div>
     </div>
@@ -197,12 +197,10 @@
         driverCores: 1,
         // Driver Number of memory
         driverMemory: '512M',
-        // Executor Number
-        numExecutors: 2,
-        // Executor Number of memory
-        executorMemory: '2G',
         // Executor Number of cores
         executorCores: 2,
+        // Executor Number of memory
+        executorMemory: '2G',
         // Command line argument
         mainArgs: '',
         // Other parameters
@@ -244,16 +242,6 @@
           return false
         }
 
-        if (!this.numExecutors) {
-          this.$message.warning(`${i18n.$t('Please enter the number of Executor')}`)
-          return false
-        }
-
-        if (!Number.isInteger(parseInt(this.numExecutors))) {
-          this.$message.warning(`${i18n.$t('The number of Executors should be a positive integer')}`)
-          return false
-        }
-
         if (!this.executorMemory) {
           this.$message.warning(`${i18n.$t('Please enter the Executor memory')}`)
           return false
@@ -269,13 +257,23 @@
           return false
         }
 
+        if (!this.totalExecutorCores) {
+          this.$message.warning(`${i18n.$t('Please enter Total executor core number')}`)
+          return false
+        }
+
+        if (!Number.isInteger(parseInt(this.totalExecutorCores))) {
+          this.$message.warning(`${i18n.$t('Total executor core number should be positive integer')}`)
+          return false
+        }
+
         if (!this.executorCores) {
-          this.$message.warning(`${i18n.$t('Please enter ExecutorPlease enter Executor core number')}`)
+          this.$message.warning(`${i18n.$t('Please enter Executor core number')}`)
           return false
         }
 
         if (!Number.isInteger(parseInt(this.executorCores))) {
-          this.$message.warning(`${i18n.$t('Core number should be positive integer')}`)
+          this.$message.warning(`${i18n.$t('Executor core number should be positive integer')}`)
           return false
         }
 
@@ -299,9 +297,9 @@
           localParams: this.localParams,
           driverCores: this.driverCores,
           driverMemory: this.driverMemory,
-          numExecutors: this.numExecutors,
-          executorMemory: this.executorMemory,
+          totalExecutorCores: this.totalExecutorCores,
           executorCores: this.executorCores,
+          executorMemory: this.executorMemory,
           mainArgs: this.mainArgs,
           others: this.others,
           programType: this.programType
@@ -346,9 +344,9 @@
           this.master = o.params.master || ''
           this.driverCores = o.params.driverCores || 1
           this.driverMemory = o.params.driverMemory || '512M'
-          this.numExecutors = o.params.numExecutors || 2
+          this.totalExecutorCores = o.params.totalExecutorCores || 1
+          this.executorCores = o.params.executorCores || 1
           this.executorMemory = o.params.executorMemory || '2G'
-          this.executorCores = o.params.executorCores || 2
           this.mainArgs = o.params.mainArgs || ''
           this.others = o.params.others
           this.programType = o.params.programType || 'SCALA'

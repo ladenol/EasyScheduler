@@ -108,8 +108,7 @@ export default {
   'Please enter Executor core number': '请输入Executor内核数',
   'The number of Executors should be a positive integer': 'Executor数量为正整数',
   'Memory should be a positive integer': '内存数为数字',
-  'Please enter ExecutorPlease enter Executor core number': '请填写Executor内核数',
-  'Core number should be positive integer': '内核数为正整数',
+  'Executor core number should be positive integer': '内核数为正整数',
   'SQL Type': 'sql类型',
   'Title': '主题',
   'Please enter the title of email': '请输入邮件主题',
@@ -462,5 +461,8 @@ export default {
   'Please select a queue': '请选择队列',
   'Please enter master address':'请输入master地址。例如， master1:7077,master2:7077',
   'Please enter JVM parameters':'请输入JVM参数',
-  'JVM Parameters':'JVM参数'
+  'JVM Parameters':'JVM参数',
+  'Total executor core number':'Executor总核数',
+  'Please enter Total executor core number':'请输入Executor总核数',
+  'Total executor core number should be positive integer':'Executor总核数为正整数'
 }
