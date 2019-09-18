@@ -65,19 +65,19 @@ public class SparkParameters extends AbstractParameters {
   private String driverMemory;
 
   /**
-   * num-executors Number of executors to launch
+   * total-executor-cores Number of all executor cores
    */
-  private int numExecutors;
-
-  /**
-   * executor-cores Number of cores per executor
-   */
-  private int executorCores;
+  private int totalExecutorCores;
 
   /**
    * Memory per executor
    */
   private String executorMemory;
+
+  /**
+   * Cores per executor
+   */
+  private int executorCores;
 
   /**
    * resource list
@@ -156,20 +156,12 @@ public class SparkParameters extends AbstractParameters {
     this.driverMemory = driverMemory;
   }
 
-  public int getNumExecutors() {
-    return numExecutors;
+  public int getTotalExecutorCores() {
+    return totalExecutorCores;
   }
 
-  public void setNumExecutors(int numExecutors) {
-    this.numExecutors = numExecutors;
-  }
-
-  public int getExecutorCores() {
-    return executorCores;
-  }
-
-  public void setExecutorCores(int executorCores) {
-    this.executorCores = executorCores;
+  public void setTotalExecutorCores(int totalExecutorCores) {
+    this.totalExecutorCores = totalExecutorCores;
   }
 
   public String getExecutorMemory() {
@@ -180,6 +172,13 @@ public class SparkParameters extends AbstractParameters {
     this.executorMemory = executorMemory;
   }
 
+  public int getExecutorCores() {
+    return executorCores;
+  }
+
+  public void setExecutorCores(int executorCores) {
+    this.executorCores = executorCores;
+  }
 
   public String getQueue() {
     return queue;

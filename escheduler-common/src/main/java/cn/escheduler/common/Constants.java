@@ -657,9 +657,9 @@ public final class Constants {
     public static final String DRIVER_MEMORY = "--driver-memory";
 
     /**
-     * --num-executors NUM
+     * --total-executor-cores NUM
      */
-    public static final String NUM_EXECUTORS = "--num-executors";
+    public static final String TOTAL_EXECUTOR_CORES = "--total-executor-cores";
 
     /**
      * --executor-cores NUM

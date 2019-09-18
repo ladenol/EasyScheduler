@@ -108,8 +108,7 @@ export default {
   'Please enter Executor core number': 'Please enter Executor core number',
   'The number of Executors should be a positive integer': 'The number of Executors should be a positive integer',
   'Memory should be a positive integer': 'Memory should be a positive integer',
-  'Please enter ExecutorPlease enter Executor core number': 'Please enter ExecutorPlease enter Executor core number',
-  'Core number should be positive integer': 'Core number should be positive integer',
+  'Executor core number should be positive integer': 'Executor core number should be positive integer',
   'SQL Type': 'SQL Type',
   'Title': 'Title',
   'Please enter the title of email': 'Please enter the title of email',
@@ -461,5 +460,8 @@ export default {
   'Process Instance Running Count': 'Process Instance Running Count',
   'Please enter master address':'Please enter master address. e.g, master1:7077,master2:7077',
   'Please enter JVM parameters':'Please enter JVM parameters',
-  'JVM Parameters':'JVM Parameters'
+  'JVM Parameters':'JVM Parameters',
+  'Total executor core number':'Total executor core number',
+  'Please enter Total executor core number':'Please enter Total executor core number',
+  'Total executor core number should be positive integer':'Total executor core number should be positive integer'
 }
